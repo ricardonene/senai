@@ -6,9 +6,10 @@ package entity;
  */
 public class Teste {
     private int id;
-
+    private String nome;
+    
     public int getId() {
-        return id;
+        return id+5;
     }
 
     public void setId(int id) {
