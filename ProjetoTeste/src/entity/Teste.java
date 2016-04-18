@@ -9,7 +9,7 @@ public class Teste {
     private String nome;
     
     public int getId() {
-        return id+5;
+        return id;
     }
 
     public void setId(int id) {
