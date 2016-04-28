@@ -33,18 +33,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
+        btnExcluir1 = new javax.swing.JButton();
+        btnAdicionar1 = new javax.swing.JButton();
+        btnAlterar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tbTarefa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 2", "Title 3", "Título 3"
             }
         ));
         jScrollPane1.setViewportView(tbTarefa);
@@ -60,35 +62,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btnAdicionar.setText("Adicionar");
 
+        btnExcluir1.setText("Excluir");
+
+        btnAdicionar1.setText("Adicionar");
+
+        btnAlterar1.setText("Alterar");
+        btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAdicionar)))
-                .addContainerGap(159, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAlterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAdicionar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAlterar1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnExcluir1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAdicionar1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAlterar1)
+                    .addComponent(btnExcluir1)
+                    .addComponent(btnAdicionar1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
                     .addComponent(btnAdicionar))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -97,6 +122,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,8 +164,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnAdicionar1;
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluir1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbTarefa;
     // End of variables declaration//GEN-END:variables

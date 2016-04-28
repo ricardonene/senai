@@ -9,6 +9,11 @@ public class Tarefa {
     private Date prazo;
     private boolean concluido;
 
+    @Override
+    public String toString() {
+        return "idTarefa=" + idTarefa + ", descricao=" + descricao + ", prazo=" + prazo + ", concluido=" + concluido;
+    }
+
     public int getIdTarefa() {
         return idTarefa;
     }
