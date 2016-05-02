@@ -46,7 +46,7 @@ public class NewMain {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         Date date = formatter.parse("28/5/2016");
-        // System.out.println(date);
+         //System.out.println(date);
         Calendar c2 = new GregorianCalendar();
         c2.setTime(date);
         c2.set(Calendar.HOUR_OF_DAY, 23);
