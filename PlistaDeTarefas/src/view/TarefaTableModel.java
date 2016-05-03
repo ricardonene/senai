@@ -2,12 +2,13 @@ package view;
 
 import entity.Tarefa;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class TarefaTableModel extends AbstractTableModel {
 
-    List<Tarefa> lista;
+    List<Tarefa> lista = new ArrayList<>();
 
     @Override
     public int getRowCount() {
@@ -35,17 +36,19 @@ public class TarefaTableModel extends AbstractTableModel {
     }
 
     @Override
-    public String getColumnName(int columnIndex) {
-        if (columnIndex == 0) {
-            return "";
-        } else if (columnIndex == 1) {
-            return "";
-        } else if (columnIndex == 2) {
-            return "";
+    public String getColumnName(int column) {
+        if (column == 0) {
+            return "Descrição";
+        } else if (column == 1) {
+            return "Prazo";
+        } else if (column == 2) {
+            return "Concluido";
         } else {
             return "";
         }
     }
+
+    
 
     public List<Tarefa> getLista() {
         return lista;

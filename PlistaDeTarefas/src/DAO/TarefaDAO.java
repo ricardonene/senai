@@ -15,16 +15,26 @@ import java.util.List;
  */
 public class TarefaDAO {
 
+    public boolean salvar(Tarefa tarefa) {
+
+        if (tarefa.getIdTarefa() == 0) {
+            return insert(tarefa);
+        } else {
+            return update(tarefa);
+        }
+
+    }
+
     private boolean insert(Tarefa tarefa) {
         Connection conn = ConnectionManager.getConnection();
         try {
             PreparedStatement ps
                     = conn.prepareStatement("INSERT INTO tarefa "
-                            + "(descrição, prazo, concluido )"
+                            + "(descricao, prazo, concluido )"
                             + "VALUES ( ?, ? , ?  )");
             ps.setString(1, tarefa.getDescricao());
-            ps.setBoolean(2, tarefa.isConcluido());
-            ps.setDate(3, (Date) tarefa.getPrazo());
+            ps.setDate(2, new Date(tarefa.getPrazo().getTime()));
+            ps.setBoolean(3, tarefa.isConcluido());
 
             ps.execute();
             ps.close();
@@ -42,11 +52,11 @@ public class TarefaDAO {
         try {
             PreparedStatement ps
                     = conn.prepareStatement("UPDATE tarefa "
-                            + "SET descrição = ?, prazo = ?, concluido = ?"
+                            + "SET descricao = ?, prazo = ?, concluido = ?"
                             + " WHERE idtarefa = ?");
             ps.setString(1, tarefa.getDescricao());
-            ps.setBoolean(2, tarefa.isConcluido());
-            ps.setDate(3, (Date) tarefa.getPrazo());
+            ps.setDate(2, (Date) tarefa.getPrazo());
+            ps.setBoolean(3, tarefa.isConcluido());
 
             ps.execute();
 
@@ -92,7 +102,7 @@ public class TarefaDAO {
                 Tarefa tarefa = new Tarefa();
                 tarefa.setIdTarefa(rs.getInt("idtarefa"));
                 tarefa.setConcluido(rs.getBoolean("concluido"));
-                tarefa.setDescricao(rs.getString("descrição"));
+                tarefa.setDescricao(rs.getString("descricao"));
                 tarefa.setPrazo(rs.getDate("prazo"));
 
                 lista.add(tarefa);
