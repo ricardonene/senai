@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author vdisoo0265
+ * @author vdisoo0265/
  */
 public class TelaCadastroTarefa extends javax.swing.JDialog {
 
