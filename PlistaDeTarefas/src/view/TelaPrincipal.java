@@ -6,6 +6,8 @@
 package view;
 
 import DAO.TarefaDAO;
+import entity.Tarefa;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +19,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
+
         initComponents();
         setLocationRelativeTo(this);
         TarefaTableModel model = new TarefaTableModel();
@@ -24,6 +27,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         AtualizarTarefa();
 
     }
+    TarefaDAO dao = new TarefaDAO();
 
     public void AtualizarTarefa() {
 
@@ -32,7 +36,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ttm.setLista(dao.listarTodos());
         tbTarefa.setModel(ttm);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -70,6 +73,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAdicionar.setText("Adicionar");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +106,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,14 +124,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,7 +145,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-AtualizarTarefa();
+        CadastroDeTarfa tela = new CadastroDeTarfa(this, true);
+        
+        AtualizarTarefa();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -145,8 +155,20 @@ AtualizarTarefa();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        CadastroTarefa tela = new CadastroTarefa();
+        CadastroDeTarfa tela = new CadastroDeTarfa(this, true);
+
+        AtualizarTarefa();
     }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int confirmacao = JOptionPane.showConfirmDialog(this, "Deseja Excluir ?", "Excluir", JOptionPane.YES_NO_OPTION);
+        if (confirmacao == 0) {
+            int row = tbTarefa.getSelectedRow();
+            Tarefa vitima = ((TarefaTableModel) tbTarefa.getModel()).getLista().get(row);
+            dao.delete(vitima);
+        }
+        AtualizarTarefa();
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

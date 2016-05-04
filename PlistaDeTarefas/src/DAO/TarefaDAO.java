@@ -70,13 +70,14 @@ public class TarefaDAO {
         return false;
     }
 
-    public boolean delete(int id) {
+   
+    public boolean delete(Tarefa tarefa) {
         Connection conn = ConnectionManager.getConnection();
         try {
             PreparedStatement ps
                     = conn.prepareStatement("DELETE FROM tarefa "
                             + "WHERE idtarefa = ?");
-            ps.setInt(1, id);
+            ps.setInt(1, tarefa.getIdTarefa());
 
             ps.execute();
 
@@ -89,6 +90,8 @@ public class TarefaDAO {
         }
         return false;
     }
+
+   
 
     public List<Tarefa> listarTodos() {
         List<Tarefa> lista = new ArrayList<Tarefa>();

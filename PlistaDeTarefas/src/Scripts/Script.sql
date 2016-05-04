@@ -19,7 +19,7 @@ USE `dbtarefa` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `dbtarefa`.`tarefa` (
   `idtarefa` INT(11) NOT NULL AUTO_INCREMENT,
-  `descrição` VARCHAR(2000) NULL DEFAULT NULL,
+  `descricao` VARCHAR(2000) NULL DEFAULT NULL,
   `prazo` DATETIME NULL DEFAULT NULL,
   `concluido` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`idtarefa`))
