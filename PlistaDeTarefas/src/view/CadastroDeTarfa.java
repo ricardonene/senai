@@ -135,7 +135,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
 
-        tarefa = new Tarefa();
+        Tarefa tarefa = new Tarefa();
 
         tarefa.setDescricao(txtdescricao.getText());
 
