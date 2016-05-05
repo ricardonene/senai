@@ -17,7 +17,7 @@ public class TarefaDAO {
 
     public boolean salvar(Tarefa tarefa) {
 
-        if (tarefa.getIdTarefa() == 0) {
+        if (tarefa.getIdTarefa() == null) {
             return insert(tarefa);
         } else {
             return update(tarefa);
@@ -54,10 +54,11 @@ public class TarefaDAO {
                     = conn.prepareStatement("UPDATE tarefa "
                             + "SET descricao = ?, prazo = ?, concluido = ?"
                             + " WHERE idtarefa = ?");
+            
             ps.setString(1, tarefa.getDescricao());
-            ps.setDate(2, (Date) tarefa.getPrazo());
+            ps.setDate(2, new java.sql.Date(tarefa.getPrazo().getTime()));
             ps.setBoolean(3, tarefa.isConcluido());
-
+            ps.setInt(4, tarefa.getIdTarefa());
             ps.execute();
 
             ps.close();

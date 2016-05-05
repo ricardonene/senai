@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Tarefa {
 
-    private int idTarefa;
+    private Integer idTarefa;
     private String descricao;
     private Date prazo;
     private boolean concluido;
@@ -14,11 +14,11 @@ public class Tarefa {
         return "idTarefa=" + idTarefa + ", descricao=" + descricao + ", prazo=" + prazo + ", concluido=" + concluido;
     }
 
-    public int getIdTarefa() {
+    public Integer getIdTarefa() {
         return idTarefa;
     }
 
-    public void setIdTarefa(int idTarefa) {
+    public void setIdTarefa(Integer idTarefa) {
         this.idTarefa = idTarefa;
     }
 
@@ -45,5 +45,7 @@ public class Tarefa {
     public void setConcluido(boolean concluido) {
         this.concluido = concluido;
     }
+
+    
 
 }

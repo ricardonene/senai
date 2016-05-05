@@ -145,8 +145,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        CadastroDeTarfa tela = new CadastroDeTarfa(this, true);
-        
+
+        int row = tbTarefa.getSelectedRow();
+        Tarefa vitima = ((TarefaTableModel) tbTarefa.getModel()).getLista().get(row);
+
+        CadastroDeTarfa tela = new CadastroDeTarfa(this, true, vitima);
         AtualizarTarefa();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -155,7 +158,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        CadastroDeTarfa tela = new CadastroDeTarfa(this, true);
+        Tarefa tarefa = new Tarefa();
+        CadastroDeTarfa tela = new CadastroDeTarfa(this, true, tarefa);
 
         AtualizarTarefa();
     }//GEN-LAST:event_btnAdicionarActionPerformed

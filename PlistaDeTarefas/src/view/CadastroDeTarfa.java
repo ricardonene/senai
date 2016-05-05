@@ -9,6 +9,7 @@ import DAO.TarefaDAO;
 import entity.Tarefa;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,15 +18,28 @@ import javax.swing.JOptionPane;
  */
 public class CadastroDeTarfa extends javax.swing.JDialog {
 
-    public CadastroDeTarfa(java.awt.Frame pai, boolean modal) {
+    Tarefa tarefa;
+    boolean novo = false;
+    TarefaDAO dao = new TarefaDAO();
+
+    public CadastroDeTarfa(java.awt.Frame pai, boolean modal, Tarefa vitima) {
         super(pai, modal);
-        
-       
         initComponents();
+        tarefa = vitima;
+        
+        if (tarefa.getIdTarefa() == null) {
+            novo = true;
+        } else if (novo == false) {
+            txtdescricao.setText(tarefa.getDescricao());
+
+            String dataString;
+            SimpleDateFormat formatBra = new SimpleDateFormat("dd/MM/yyyy");
+            dataString = formatBra.format(tarefa.getPrazo());
+            txtdata.setText(dataString);
+            novo = true;
+        }
         setVisible(true);
     }
-
-    private boolean novo = true;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +63,12 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel3.setText("Descrição :");
+
+        txtdescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdescricaoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Data de Conclusão :");
 
@@ -135,25 +155,29 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
 
-        Tarefa tarefa = new Tarefa();
+        if (novo) {
+            tarefa.setDescricao(txtdescricao.getText());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                tarefa.setPrazo(formatter.parse(txtdata.getText()));
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Data invalida");
+            }
 
-        tarefa.setDescricao(txtdescricao.getText());
+            dao.salvar(tarefa);
+            JOptionPane.showMessageDialog(null, "Documentario salvo com sucesso!");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            tarefa.setPrazo(formatter.parse(txtdata.getText()));
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Data invalida");
         }
-        TarefaDAO dao = new TarefaDAO();
-        dao.salvar(tarefa);
-        JOptionPane.showMessageDialog(null, "Documentario salvo com sucesso!");
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdescricaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +217,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroDeTarfa dialog = new CadastroDeTarfa(null, true);
+                CadastroDeTarfa dialog = new CadastroDeTarfa(null, true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
