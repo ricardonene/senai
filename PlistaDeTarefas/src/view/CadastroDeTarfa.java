@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class CadastroDeTarfa extends javax.swing.JDialog {
 
+    
+    
     Tarefa tarefa;
     TarefaDAO dao = new TarefaDAO();
 
