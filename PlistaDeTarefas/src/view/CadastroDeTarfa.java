@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class CadastroDeTarfa extends javax.swing.JDialog {
 
+    
+    
     Tarefa tarefa;
     boolean novo = false;
     TarefaDAO dao = new TarefaDAO();
@@ -25,6 +27,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
     public CadastroDeTarfa(java.awt.Frame pai, boolean modal, Tarefa vitima) {
         super(pai, modal);
         initComponents();
+        setLocationRelativeTo(this);
         tarefa = vitima;
         
         if (tarefa.getIdTarefa() == null) {
