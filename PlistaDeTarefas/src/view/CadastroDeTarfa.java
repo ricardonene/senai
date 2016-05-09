@@ -19,24 +19,23 @@ import javax.swing.JOptionPane;
 public class CadastroDeTarfa extends javax.swing.JDialog {
 
     Tarefa tarefa;
-    boolean novo = false;
     TarefaDAO dao = new TarefaDAO();
 
     public CadastroDeTarfa(java.awt.Frame pai, boolean modal, Tarefa vitima) {
         super(pai, modal);
         initComponents();
+        setLocationRelativeTo(null);
         tarefa = vitima;
         
-        if (tarefa.getIdTarefa() == null) {
-            novo = true;
-        } else if (novo == false) {
+        if (tarefa.getIdTarefa() != null) {
+            
             txtdescricao.setText(tarefa.getDescricao());
 
             String dataString;
             SimpleDateFormat formatBra = new SimpleDateFormat("dd/MM/yyyy");
             dataString = formatBra.format(tarefa.getPrazo());
             txtdata.setText(dataString);
-            novo = true;
+            
         }
         setVisible(true);
     }
@@ -56,7 +55,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         txtdata = new javax.swing.JFormattedTextField();
         btnsalvar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,17 +77,19 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        btnsalvar.setText("salvar");
+        btnsalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Apply.png"))); // NOI18N
+        btnsalvar.setText("Salvar");
         btnsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsalvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Voltar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Delete.png"))); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -108,7 +109,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
                                 .addGap(75, 75, 75)
                                 .addComponent(btnsalvar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
@@ -127,10 +128,11 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(btnsalvar)))
+                    .addComponent(btnsalvar)
+                    .addComponent(btnVoltar))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,7 +157,7 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
 
-        if (novo) {
+        
             tarefa.setDescricao(txtdescricao.getText());
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             try {
@@ -165,15 +167,15 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
             }
 
             dao.salvar(tarefa);
-            JOptionPane.showMessageDialog(null, "Documentario salvo com sucesso!");
-
-        }
+            JOptionPane.showMessageDialog(null, "Tarefa salva com sucesso!");
+            this.dispose();
+        
 
     }//GEN-LAST:event_btnsalvarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtdescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescricaoActionPerformed
         // TODO add your handling code here:
@@ -230,8 +232,8 @@ public class CadastroDeTarfa extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JButton btnsalvar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

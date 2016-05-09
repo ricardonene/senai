@@ -29,7 +29,7 @@ public class TarefaTableModel extends AbstractTableModel {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
             return formatter.format(t.getPrazo());
         } else if (columnIndex == 2) {
-            return t.isConcluido();
+            return t.isConcluido()? "Sim" : "Não";
         } else {
             return "";
         }
