@@ -5,8 +5,12 @@
  */
 package view;
 
+import DAO.ListaDAO;
 import DAO.TarefaDAO;
+import entity.Lista;
 import entity.Tarefa;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,11 +28,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         TarefaTableModel model = new TarefaTableModel();
         tbTarefa.setModel(model);
+
         AtualizarTarefa();
 
     }
     TarefaDAO dao = new TarefaDAO();
+    ListaDAO listadao = new ListaDAO();
     Tarefa tarefaconcluida = new Tarefa();
+    Lista lista = new Lista();
 
     public void AtualizarTarefa() {
 
@@ -159,6 +166,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Listas :");
 
         cbListaTarefas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a Lista" }));
+        cbListaTarefas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbListaTarefasActionPerformed(evt);
+            }
+        });
 
         btnAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Modify.png"))); // NOI18N
         btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +263,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnAddListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddListaActionPerformed
         String NomeLista = JOptionPane.showInputDialog("Digite o nome da lista");
+        lista.setNome(NomeLista);
+        listadao.salvar(lista);
         cbListaTarefas.addItem(NomeLista);
+
+//String cnh;
+//
+//cnh=jComboBoxClienteCNH.getSelectedItem()+””;    
+
     }//GEN-LAST:event_btnAddListaActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
@@ -309,6 +328,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_tbTarefaMouseReleased
+
+    private void cbListaTarefasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListaTarefasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbListaTarefasActionPerformed
 
     /**
      * @param args the command line arguments
