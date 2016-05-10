@@ -99,7 +99,7 @@ public class TarefaDAO {
         Connection conn = ConnectionManager.getConnection();
         try {
             PreparedStatement ps
-                    = conn.prepareStatement("SELECT * From tarefa");
+                    = conn.prepareStatement("SELECT * From tarefa ORDER BY descricao");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 

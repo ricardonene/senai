@@ -26,7 +26,7 @@ public class TarefaTableModel extends AbstractTableModel {
         if (columnIndex == 0) {
             return t.getDescricao();
         } else if (columnIndex == 1) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             return formatter.format(t.getPrazo());
         } else if (columnIndex == 2) {
             return t.isConcluido()? "Sim" : "Não";
