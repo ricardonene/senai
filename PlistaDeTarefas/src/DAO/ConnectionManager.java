@@ -11,15 +11,15 @@ public class ConnectionManager {
 
     public static Connection getConnection() {
 
-        String servidor = "localhost";
+        String servidor = "localhost:37777";
         String database = "dbtarefa";
         String conexao = "jdbc:mysql://" + servidor + "/" + database;
         String username = "root";
-        String password = "";
+        String password = "1234";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(conexao, username, password);
+           Class.forName("com.mysql.jdbc.Driver");
+             conn = DriverManager.getConnection(conexao, username, password);
             return conn;
         } catch (ClassNotFoundException e) {
             System.out.println("O driver expecificado nao foi encontrado.");

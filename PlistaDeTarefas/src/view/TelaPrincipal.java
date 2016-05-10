@@ -54,7 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnAddLista = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cbListaTarefas = new javax.swing.JComboBox<>();
+        cbListaTarefas = new javax.swing.JComboBox<String>();
         btnAlterar1 = new javax.swing.JButton();
         btnExcluir1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -138,13 +138,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdicionar)
                     .addComponent(btnExcluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnConcluir))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listas de Tarefas"));
@@ -158,7 +158,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Listas :");
 
-        cbListaTarefas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a Lista" }));
+        cbListaTarefas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a Lista" }));
 
         btnAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Modify.png"))); // NOI18N
         btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +232,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -282,15 +282,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
         int row = tbTarefa.getSelectedRow();
         tarefaconcluida = ((TarefaTableModel) tbTarefa.getModel()).getLista().get(row);
-        tarefaconcluida.setConcluido(true);
-        dao.salvar(tarefaconcluida);
 
         if (tarefaconcluida.isConcluido()) {
-            tarefaconcluida.setConcluido(true);
+            tarefaconcluida.setConcluido(false);
             dao.salvar(tarefaconcluida);
             AtualizarTarefa();
         } else {
-            tarefaconcluida.setConcluido(false);
+            tarefaconcluida.setConcluido(true);
             dao.salvar(tarefaconcluida);
             AtualizarTarefa();
         }
